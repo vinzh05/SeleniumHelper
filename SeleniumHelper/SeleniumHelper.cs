@@ -642,34 +642,100 @@ namespace SeleniumSupport
             }
             return flag ? 1 : 0;
         }
-        public static int CheckExistElement(IWebDriver driver, int timeWait, string element)
+        public static bool CheckExistElement(IWebDriver driver, string type, string element)
         {
-            bool flag = true;
-            try
-            {
-                int tickCount = Environment.TickCount;
-                string x = (string)((IJavaScriptExecutor)driver).ExecuteScript($"document.querySelectorAll('{element}').length");
-                while (true)
-                {
-                    string length = (string)((IJavaScriptExecutor)driver).ExecuteScript($"document.querySelectorAll('{element}').length;");
-                    if (length != "0")
-                    {
-                        return 1;
-                    }
-                    if (Environment.TickCount - tickCount > timeWait * 1000)
-                    {
-                        return -2;
-                    }
-                    // Sleep for a short duration before rechecking
-                    Thread.Sleep(500);
-                }
+            bool elementCount = false;
 
-            }
-            catch (Exception)
+            switch (type)
             {
-                flag = false;
+
+                case "xpath":
+                    elementCount = driver.FindElements(By.XPath(element)).Any();
+                    break;
+                case "name":
+                    elementCount = driver.FindElements(By.Name(element)).Any();
+                    break;
+                case "id":
+                    elementCount = driver.FindElements(By.Id(element)).Any();
+                    break;
+                case "css":
+                    elementCount = driver.FindElements(By.CssSelector(element)).Any();
+                    break;
+                case "class":
+                    elementCount = driver.FindElements(By.ClassName(element)).Any();
+                    break;
             }
-            return flag ? 1 : 0;
+            return elementCount;
+        }
+        public static string GetAttribute(IWebDriver driver, string type, string element, string Attribute)
+        {
+            string GetAttribute = "";
+            switch (type)
+            {
+
+                case "xpath":
+                    GetAttribute = driver.FindElement(By.XPath(element)).GetAttribute(Attribute);
+                    break;
+                case "name":
+                    GetAttribute = driver.FindElement(By.Name(element)).GetAttribute(Attribute);
+                    break;
+                case "id":
+                    GetAttribute = driver.FindElement(By.Id(element)).GetAttribute(Attribute);
+                    break;
+                case "css":
+                    GetAttribute = driver.FindElement(By.CssSelector(element)).GetAttribute(Attribute);
+                    break;
+                case "class":
+                    GetAttribute = driver.FindElement(By.ClassName(element)).GetAttribute(Attribute);
+                    break;
+            }
+            return GetAttribute;
+        }
+        public static string GetText(IWebDriver driver, string type, string element)
+        {
+            string GetAttribute = "";
+            switch (type)
+            {
+
+                case "xpath":
+                    GetAttribute = driver.FindElement(By.XPath(element)).Text;
+                    break;
+                case "name":
+                    GetAttribute = driver.FindElement(By.Name(element)).Text;
+                    break;
+                case "id":
+                    GetAttribute = driver.FindElement(By.Id(element)).Text;
+                    break;
+                case "css":
+                    GetAttribute = driver.FindElement(By.CssSelector(element)).Text;
+                    break;
+                case "class":
+                    GetAttribute = driver.FindElement(By.ClassName(element)).Text;
+                    break;
+            }
+            return GetAttribute;
+        }
+        public static void ClearText(IWebDriver driver, string type, string element)
+        {
+            switch (type)
+            {
+
+                case "xpath":
+                    driver.FindElement(By.XPath(element)).Clear();
+                    break;
+                case "name":
+                    driver.FindElement(By.Name(element)).Clear();
+                    break;
+                case "id":
+                    driver.FindElement(By.Id(element)).Clear();
+                    break;
+                case "css":
+                    driver.FindElement(By.CssSelector(element)).Clear();
+                    break;
+                case "class":
+                    driver.FindElement(By.ClassName(element)).Clear();
+                    break;
+            }
         }
         public static int ScrollSmooth(IWebDriver driver, string JSpath)
         {

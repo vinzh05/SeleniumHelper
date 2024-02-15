@@ -34,3 +34,15 @@ F:\repos\SeleniumHelper\SeleniumHelper\obj\Debug\SeleniumHelper.csproj.CoreCompi
 F:\repos\SeleniumHelper\SeleniumHelper\obj\Debug\SeleniumHelper.csproj.CopyComplete
 F:\repos\SeleniumHelper\SeleniumHelper\obj\Debug\SeleniumHelper.dll
 F:\repos\SeleniumHelper\SeleniumHelper\obj\Debug\SeleniumHelper.pdb
+D:\Github\SeleniumHelper\SeleniumHelper\bin\Debug\selenium-manager\linux\selenium-manager
+D:\Github\SeleniumHelper\SeleniumHelper\bin\Debug\selenium-manager\macos\selenium-manager
+D:\Github\SeleniumHelper\SeleniumHelper\bin\Debug\selenium-manager\windows\selenium-manager.exe
+D:\Github\SeleniumHelper\SeleniumHelper\bin\Debug\SeleniumHelper.dll
+D:\Github\SeleniumHelper\SeleniumHelper\bin\Debug\SeleniumHelper.pdb
+D:\Github\SeleniumHelper\SeleniumHelper\bin\Debug\WebDriver.dll
+D:\Github\SeleniumHelper\SeleniumHelper\bin\Debug\WebDriver.Support.dll
+D:\Github\SeleniumHelper\SeleniumHelper\obj\Debug\SeleniumHelper.csproj.AssemblyReference.cache
+D:\Github\SeleniumHelper\SeleniumHelper\obj\Debug\SeleniumHelper.csproj.CoreCompileInputs.cache
+D:\Github\SeleniumHelper\SeleniumHelper\obj\Debug\SeleniumHelper.csproj.CopyComplete
+D:\Github\SeleniumHelper\SeleniumHelper\obj\Debug\SeleniumHelper.dll
+D:\Github\SeleniumHelper\SeleniumHelper\obj\Debug\SeleniumHelper.pdb
