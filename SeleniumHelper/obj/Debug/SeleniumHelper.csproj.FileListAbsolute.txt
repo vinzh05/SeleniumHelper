@@ -1,0 +1,36 @@
+D:\Main Information\source\repos\SeleniumHelper\SeleniumHelper\bin\Debug\SeleniumHelper.dll
+D:\Main Information\source\repos\SeleniumHelper\SeleniumHelper\bin\Debug\SeleniumHelper.pdb
+D:\Main Information\source\repos\SeleniumHelper\SeleniumHelper\bin\Debug\WebDriver.dll
+D:\Main Information\source\repos\SeleniumHelper\SeleniumHelper\bin\Debug\WebDriver.Support.dll
+D:\Main Information\source\repos\SeleniumHelper\SeleniumHelper\obj\Debug\SeleniumHelper.csproj.AssemblyReference.cache
+D:\Main Information\source\repos\SeleniumHelper\SeleniumHelper\obj\Debug\SeleniumHelper.csproj.CoreCompileInputs.cache
+D:\Main Information\source\repos\SeleniumHelper\SeleniumHelper\obj\Debug\SeleniumHelper.csproj.CopyComplete
+D:\Main Information\source\repos\SeleniumHelper\SeleniumHelper\obj\Debug\SeleniumHelper.dll
+D:\Main Information\source\repos\SeleniumHelper\SeleniumHelper\obj\Debug\SeleniumHelper.pdb
+D:\Main Information\source\repos\SeleniumHelper\SeleniumHelper\bin\Debug\selenium-manager\linux\selenium-manager
+D:\Main Information\source\repos\SeleniumHelper\SeleniumHelper\bin\Debug\selenium-manager\macos\selenium-manager
+D:\Main Information\source\repos\SeleniumHelper\SeleniumHelper\bin\Debug\selenium-manager\windows\selenium-manager.exe
+C:\Users\hp\Desktop\repos\SeleniumHelper\SeleniumHelper\obj\Debug\SeleniumHelper.csproj.AssemblyReference.cache
+C:\Users\hp\Desktop\repos\SeleniumHelper\SeleniumHelper\obj\Debug\SeleniumHelper.csproj.CoreCompileInputs.cache
+C:\Users\hp\Desktop\repos\SeleniumHelper\SeleniumHelper\obj\Debug\SeleniumHelper.dll
+C:\Users\hp\Desktop\repos\SeleniumHelper\SeleniumHelper\obj\Debug\SeleniumHelper.pdb
+C:\Users\hp\Desktop\repos\SeleniumHelper\SeleniumHelper\bin\Debug\selenium-manager\linux\selenium-manager
+C:\Users\hp\Desktop\repos\SeleniumHelper\SeleniumHelper\bin\Debug\selenium-manager\macos\selenium-manager
+C:\Users\hp\Desktop\repos\SeleniumHelper\SeleniumHelper\bin\Debug\selenium-manager\windows\selenium-manager.exe
+C:\Users\hp\Desktop\repos\SeleniumHelper\SeleniumHelper\bin\Debug\SeleniumHelper.dll
+C:\Users\hp\Desktop\repos\SeleniumHelper\SeleniumHelper\bin\Debug\SeleniumHelper.pdb
+C:\Users\hp\Desktop\repos\SeleniumHelper\SeleniumHelper\bin\Debug\WebDriver.dll
+C:\Users\hp\Desktop\repos\SeleniumHelper\SeleniumHelper\bin\Debug\WebDriver.Support.dll
+C:\Users\hp\Desktop\repos\SeleniumHelper\SeleniumHelper\obj\Debug\SeleniumHelper.csproj.CopyComplete
+F:\repos\SeleniumHelper\SeleniumHelper\bin\Debug\selenium-manager\linux\selenium-manager
+F:\repos\SeleniumHelper\SeleniumHelper\bin\Debug\selenium-manager\macos\selenium-manager
+F:\repos\SeleniumHelper\SeleniumHelper\bin\Debug\selenium-manager\windows\selenium-manager.exe
+F:\repos\SeleniumHelper\SeleniumHelper\bin\Debug\SeleniumHelper.dll
+F:\repos\SeleniumHelper\SeleniumHelper\bin\Debug\SeleniumHelper.pdb
+F:\repos\SeleniumHelper\SeleniumHelper\bin\Debug\WebDriver.dll
+F:\repos\SeleniumHelper\SeleniumHelper\bin\Debug\WebDriver.Support.dll
+F:\repos\SeleniumHelper\SeleniumHelper\obj\Debug\SeleniumHelper.csproj.AssemblyReference.cache
+F:\repos\SeleniumHelper\SeleniumHelper\obj\Debug\SeleniumHelper.csproj.CoreCompileInputs.cache
+F:\repos\SeleniumHelper\SeleniumHelper\obj\Debug\SeleniumHelper.csproj.CopyComplete
+F:\repos\SeleniumHelper\SeleniumHelper\obj\Debug\SeleniumHelper.dll
+F:\repos\SeleniumHelper\SeleniumHelper\obj\Debug\SeleniumHelper.pdb
