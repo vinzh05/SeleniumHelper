@@ -33,6 +33,9 @@
     <WarningLevel>4</WarningLevel>
   </PropertyGroup>
   <ItemGroup>
+    <Reference Include="OpenQA.Selenium.Chrome.ChromeDriverExtensions, Version=1.2.0.0, Culture=neutral, processorArchitecture=MSIL">
+      <HintPath>..\packages\OpenQA.Selenium.Chrome.ChromeDriverExtensions.1.2.0\lib\netstandard2.0\OpenQA.Selenium.Chrome.ChromeDriverExtensions.dll</HintPath>
+    </Reference>
     <Reference Include="System" />
     <Reference Include="System.Core" />
     <Reference Include="System.Drawing" />

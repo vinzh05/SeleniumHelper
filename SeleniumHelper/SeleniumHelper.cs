@@ -1,5 +1,6 @@
 ﻿using OpenQA.Selenium;
 using OpenQA.Selenium.Chrome;
+using OpenQA.Selenium.Chrome.ChromeDriverExtensions;
 using OpenQA.Selenium.Interactions;
 using OpenQA.Selenium.Support.Extensions;
 using OpenQA.Selenium.Support.UI;
@@ -118,7 +119,7 @@ namespace SeleniumSupport
         }
         public static ChromeDriver OpenChrome(int indexPos, bool DisableImage, bool Extension, bool App, string nameExtension, bool debugPort, string Port, int TypeProxy, string Proxyaddress, Point Size, Point Position)
         {
-            ChromeOptions Option = new ChromeOptions();
+            var Option = new ChromeOptions();
             ChromeDriverService chromeDriverService = ChromeDriverService.CreateDefaultService(AppDomain.CurrentDomain.BaseDirectory);
             chromeDriverService.HideCommandPromptWindow = true;
             chromeDriverService.DisableBuildCheck = true;
@@ -231,13 +232,11 @@ namespace SeleniumSupport
                     case 4:
                         if (TypeProxy == 0)
                         {
-                            Option.AddArgument("--proxy-server= " + Proxyaddress.Split(':')[0] + ":" + Proxyaddress.Split(':')[1]);
-                            Option.AddExtension(@"Extension\Proxy-Auto-Auth.crx");
+                            Option.AddHttpProxy(Proxyaddress.Split(':')[0], Convert.ToInt32(Proxyaddress.Split(':')[1]), Proxyaddress.Split(':')[2], Proxyaddress.Split(':')[3]);
                         }
                         else
                         {
                             Option.AddArgument("--proxy-server= socks5://" + Proxyaddress.Split(':')[0] + ":" + Proxyaddress.Split(':')[1]);
-                            Option.AddExtension(@"Extension\Proxy-Auto-Auth.crx");
                         }
                         break;
                 }
