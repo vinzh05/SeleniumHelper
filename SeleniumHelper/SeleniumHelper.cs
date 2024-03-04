@@ -752,6 +752,18 @@ namespace SeleniumSupport
             }
             return 0;
         }
+        public static int ScrollSmooth(IWebDriver driver, int distance)
+        {
+            try
+            {
+                ((IJavaScriptExecutor)driver).ExecuteScript("window.scrollBy({ top: " + distance + ",behavior: 'smooth'});");
+                return 1;
+            }
+            catch
+            {
+            }
+            return 0;
+        }
         public static int ScrollSmoothIfNotExistOnScreen(IWebDriver driver, string JSpath)
         {
             try
