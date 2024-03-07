@@ -117,7 +117,7 @@ namespace SeleniumSupport
             int y = Screen.PrimaryScreen.WorkingArea.Height / row + 10;
             return new Point(x, y);
         }
-        public static ChromeDriver OpenChrome(int indexPos, bool DisableImage, bool Extension, bool App, string nameExtension, bool debugPort, string Port, int TypeProxy, string Proxyaddress, Point Size, Point Position)
+        public static ChromeDriver OpenChrome(int indexPos, bool DisableImage, bool Extension, bool App, string nameExtension, bool debugPort, string Port, bool Profile, string profilepath, int TypeProxy, string Proxyaddress, Point Size, Point Position)
         {
             var Option = new ChromeOptions();
             ChromeDriverService chromeDriverService = ChromeDriverService.CreateDefaultService(AppDomain.CurrentDomain.BaseDirectory);
@@ -204,6 +204,18 @@ namespace SeleniumSupport
             if (debugPort)
             {
                 Option.DebuggerAddress = $"127.0.0.1:{Port}";
+            }
+            if (Profile)
+            {
+                string ProfileFolderPath = "ProfileChrome";
+                if (!Directory.Exists(ProfileFolderPath + "\\" + profilepath)) // nếu chưa có folder này thì sẽ tạo ra folder đó
+                {
+                    Directory.CreateDirectory(ProfileFolderPath + "\\" + profilepath);
+                }
+                if (Directory.Exists(ProfileFolderPath + "\\" + profilepath))
+                {
+                    Option.AddArgument("--user-data-dir=" + Directory.GetCurrentDirectory() + "\\" + ProfileFolderPath + "\\" + profilepath);
+                }
             }
             if (!string.IsNullOrEmpty(Proxyaddress.Trim()))
             {

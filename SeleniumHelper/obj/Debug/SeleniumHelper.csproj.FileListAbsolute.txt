@@ -47,3 +47,16 @@ D:\Github\SeleniumHelper\SeleniumHelper\obj\Debug\SeleniumHelper.csproj.CopyComp
 D:\Github\SeleniumHelper\SeleniumHelper\obj\Debug\SeleniumHelper.dll
 D:\Github\SeleniumHelper\SeleniumHelper\obj\Debug\SeleniumHelper.pdb
 D:\Github\SeleniumHelper\SeleniumHelper\bin\Debug\OpenQA.Selenium.Chrome.ChromeDriverExtensions.dll
+F:\Github\SeleniumHelper\SeleniumHelper\bin\Debug\selenium-manager\linux\selenium-manager
+F:\Github\SeleniumHelper\SeleniumHelper\bin\Debug\selenium-manager\macos\selenium-manager
+F:\Github\SeleniumHelper\SeleniumHelper\bin\Debug\selenium-manager\windows\selenium-manager.exe
+F:\Github\SeleniumHelper\SeleniumHelper\bin\Debug\SeleniumHelper.dll
+F:\Github\SeleniumHelper\SeleniumHelper\bin\Debug\SeleniumHelper.pdb
+F:\Github\SeleniumHelper\SeleniumHelper\bin\Debug\OpenQA.Selenium.Chrome.ChromeDriverExtensions.dll
+F:\Github\SeleniumHelper\SeleniumHelper\bin\Debug\WebDriver.dll
+F:\Github\SeleniumHelper\SeleniumHelper\bin\Debug\WebDriver.Support.dll
+F:\Github\SeleniumHelper\SeleniumHelper\obj\Debug\SeleniumHelper.csproj.AssemblyReference.cache
+F:\Github\SeleniumHelper\SeleniumHelper\obj\Debug\SeleniumHelper.csproj.CoreCompileInputs.cache
+F:\Github\SeleniumHelper\SeleniumHelper\obj\Debug\SeleniumHelper.csproj.CopyComplete
+F:\Github\SeleniumHelper\SeleniumHelper\obj\Debug\SeleniumHelper.dll
+F:\Github\SeleniumHelper\SeleniumHelper\obj\Debug\SeleniumHelper.pdb
