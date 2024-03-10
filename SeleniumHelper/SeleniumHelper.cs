@@ -117,7 +117,7 @@ namespace SeleniumSupport
             int y = Screen.PrimaryScreen.WorkingArea.Height / row + 10;
             return new Point(x, y);
         }
-        public static ChromeDriver OpenChrome(int indexPos, bool DisableImage, bool Extension, bool App, string nameExtension, bool debugPort, string Port, bool Profile, string profilepath, int TypeProxy, string Proxyaddress, Point Size, Point Position)
+        public static ChromeDriver OpenChrome(bool DisableImage, bool Extension, bool App, string nameExtension, bool debugPort, string Port, bool Profile, string profilepath, int TypeProxy, string Proxyaddress, Point Size, Point Position)
         {
             var Option = new ChromeOptions();
             ChromeDriverService chromeDriverService = ChromeDriverService.CreateDefaultService(AppDomain.CurrentDomain.BaseDirectory);
