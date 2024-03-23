@@ -329,7 +329,7 @@ namespace SeleniumSupport
             }
             else if (option == 2)
             {
-                clickBot(driver, type, element);
+                clickNormal(driver, type, element);
             }
         }
         public static void SendKeysOptions(IWebDriver driver, int option, string type, string element, string text)
@@ -343,7 +343,7 @@ namespace SeleniumSupport
                 sendTextRobot(driver, type, element, text);
             }
         }
-        public static void clickBot(IWebDriver driver, string type, string element)
+        public static void clickNormal(IWebDriver driver, string type, string element)
         {
             switch (type)
             {
@@ -386,6 +386,29 @@ namespace SeleniumSupport
                     action.MoveToElement(driver.FindElement(By.ClassName(element))).Click().Build().Perform();
                     break;
             }
+        }
+        public static void clickWithElementSpecified(IWebDriver driver, string type, string element, int ElementSpecified)
+        {
+            IList<IWebElement> elements = null;
+            switch (type)
+            {
+                case "xpath":
+                    elements = driver.FindElements(By.XPath(element));
+                    break;
+                case "name":
+                    elements = driver.FindElements(By.Name(element));
+                    break;
+                case "id":
+                    elements = driver.FindElements(By.Id(element));
+                    break;
+                case "css":
+                    elements = driver.FindElements(By.CssSelector(element));
+                    break;
+                case "class":
+                    elements = driver.FindElements(By.ClassName(element));
+                    break;
+            }
+            elements[ElementSpecified].Click();
         }
         public static void sendTextRobot(IWebDriver driver, string type, string element, string text)
         {
