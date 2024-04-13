@@ -336,11 +336,11 @@ namespace SeleniumSupport
         {
             if (option == 1)
             {
-                sendTextbyText(driver, type, element, text);
+                sendTextbyIndex(driver, type, element, text);
             }
             else if (option == 2)
             {
-                sendTextRobot(driver, type, element, text);
+                sendTextNormal(driver, type, element, text);
             }
         }
         public static void clickNormal(IWebDriver driver, string type, string element)
@@ -410,7 +410,7 @@ namespace SeleniumSupport
             }
             elements[ElementSpecified].Click();
         }
-        public static void sendTextRobot(IWebDriver driver, string type, string element, string text)
+        public static void sendTextNormal(IWebDriver driver, string type, string element, string text)
         {
             switch (type)
             {
@@ -432,7 +432,7 @@ namespace SeleniumSupport
                     break;
             }
         }
-        public static void sendTextbyText(IWebDriver driver, string type, string element, string text)
+        public static void sendTextbyIndex(IWebDriver driver, string type, string element, string text)
         {
             Random re = new Random();
             IWebElement ele = null;
