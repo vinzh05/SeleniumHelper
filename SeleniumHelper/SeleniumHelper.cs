@@ -19,6 +19,39 @@ namespace SeleniumSupport
 {
     public class SeleniumHelper
     {
+        public bool DisableImage { get; set; }
+        public bool Extension { get; set; }
+        public bool App {  get; set; }
+        public string nameExtension { get; set; }
+        public bool debugPort { get; set; }
+        public string Port { get; set; }
+        public bool Profile { get; set; }
+        public string profilepath {  get; set; }
+        public int TypeProxy {  get; set; }
+        public string Proxyaddress { get; set; }
+        public Point Size { get; set; }
+        public Point Position { get; set; }
+        public SeleniumHelper()
+        {
+            DisableImage = false;
+            Extension = false;
+            App = false;
+            nameExtension = "";
+            debugPort = false;
+            Port = "";
+            Profile = false;
+            profilepath = "";
+            TypeProxy = 0;
+            Proxyaddress = "";
+            Size = new Point(Size.X, Size.Y);
+            Position = new Point (Position.X, Position.Y);
+        }
+        public static Point GetSizeChrome(int column, int row)
+        {
+            int x = Screen.PrimaryScreen.WorkingArea.Width / column + 15;
+            int y = Screen.PrimaryScreen.WorkingArea.Height / row + 10;
+            return new Point(x, y);
+        }
         public static Point GetPointFromIndexPosition(int indexPos, int column, int row)
         {
             Point result = default(Point);
@@ -111,13 +144,7 @@ namespace SeleniumSupport
             result.X = indexPos * num2 - 10;
             return result;
         }
-        public static Point GetSizeChrome(int column, int row)
-        {
-            int x = Screen.PrimaryScreen.WorkingArea.Width / column + 15;
-            int y = Screen.PrimaryScreen.WorkingArea.Height / row + 10;
-            return new Point(x, y);
-        }
-        public static ChromeDriver OpenChrome(bool DisableImage, bool Extension, bool App, string nameExtension, bool debugPort, string Port, bool Profile, string profilepath, int TypeProxy, string Proxyaddress, Point Size, Point Position)
+        public static ChromeDriver OpenChrome(SeleniumHelper seleniumHelper)
         {
             var Option = new ChromeOptions();
             ChromeDriverService chromeDriverService = ChromeDriverService.CreateDefaultService(AppDomain.CurrentDomain.BaseDirectory);
@@ -178,77 +205,77 @@ namespace SeleniumSupport
                 "--force-webrtc-ip-handling-policy",
                 "--ignore-certificate-errors",
                 "--force-device-scale-factor=1",
-                $"--window-size={Size.X},{Size.Y}",
-                $"--window-position={Position.X},{Position.Y}",
+                $"--window-size={seleniumHelper.Size.X},{seleniumHelper.Size.Y}",
+                $"--window-position={seleniumHelper.Position.X},{seleniumHelper.Position.Y}",
             });
-            if (DisableImage)
+            if (seleniumHelper.DisableImage)
             {
                 Option.AddArgument("--blink-settings=imagesEnabled=false");
                 Option.AddArgument("--disable-images");
             }
-            if (Extension)
+            if (seleniumHelper.Extension)
             {
-                if (nameExtension.Contains("crx"))
+                if (seleniumHelper.nameExtension.Contains("crx"))
                 {
-                    Option.AddExtension(nameExtension);
+                    Option.AddExtension(seleniumHelper.nameExtension);
                 }
                 else
                 {
-                    Option.AddArgument($"--load-extension={nameExtension}");
+                    Option.AddArgument($"--load-extension={seleniumHelper.nameExtension}");
                 }
             }
-            if (App)
+            if (seleniumHelper.App)
             {
                 Option.AddArgument("--app=data:,");
             }
-            if (debugPort)
+            if (seleniumHelper.debugPort)
             {
-                Option.DebuggerAddress = $"127.0.0.1:{Port}";
+                Option.DebuggerAddress = $"127.0.0.1:{seleniumHelper.Port}";
             }
-            if (Profile)
+            if (seleniumHelper.Profile)
             {
                 string ProfileFolderPath = "ProfileChrome";
-                if (!Directory.Exists(ProfileFolderPath + "\\" + profilepath)) // nếu chưa có folder này thì sẽ tạo ra folder đó
+                if (!Directory.Exists(ProfileFolderPath + "\\" + seleniumHelper.profilepath)) // nếu chưa có folder này thì sẽ tạo ra folder đó
                 {
-                    Directory.CreateDirectory(ProfileFolderPath + "\\" + profilepath);
+                    Directory.CreateDirectory(ProfileFolderPath + "\\" + seleniumHelper.profilepath);
                 }
-                if (Directory.Exists(ProfileFolderPath + "\\" + profilepath))
+                if (Directory.Exists(ProfileFolderPath + "\\" + seleniumHelper.profilepath))
                 {
-                    Option.AddArgument("--user-data-dir=" + Directory.GetCurrentDirectory() + "\\" + ProfileFolderPath + "\\" + profilepath);
+                    Option.AddArgument("--user-data-dir=" + Directory.GetCurrentDirectory() + "\\" + ProfileFolderPath + "\\" + seleniumHelper.profilepath);
                 }
             }
-            if (!string.IsNullOrEmpty(Proxyaddress.Trim()))
+            if (!string.IsNullOrEmpty(seleniumHelper.Proxyaddress.Trim()))
             {
-                switch (Proxyaddress.Split(':').Count())
+                switch (seleniumHelper.Proxyaddress.Split(':').Count())
                 {
                     case 1:
-                        if (TypeProxy == 0)
+                        if (seleniumHelper.TypeProxy == 0)
                         {
-                            Option.AddArgument("--proxy-server= 127.0.0.1:" + Proxyaddress);
+                            Option.AddArgument("--proxy-server= 127.0.0.1:" + seleniumHelper.Proxyaddress);
                         }
                         else
                         {
-                            Option.AddArgument("--proxy-server= socks5://127.0.0.1:" + Proxyaddress);
+                            Option.AddArgument("--proxy-server= socks5://127.0.0.1:" + seleniumHelper.Proxyaddress);
                         }
                         break;
                     case 2:
-                        if (TypeProxy == 0)
+                        if (seleniumHelper.TypeProxy == 0)
                         {
-                            Option.AddArgument("--proxy-server= " + Proxyaddress);
+                            Option.AddArgument("--proxy-server= " + seleniumHelper.Proxyaddress);
                         }
                         else
                         {
-                            Option.AddArgument("--proxy-server= socks5://" + Proxyaddress);
+                            Option.AddArgument("--proxy-server= socks5://" + seleniumHelper.Proxyaddress);
                         }
                         break;
                     case 4:
-                        if (TypeProxy == 0)
+                        if (seleniumHelper.TypeProxy == 0)
                         {
-                            Option.AddHttpProxy(Proxyaddress.Split(':')[0], Convert.ToInt32(Proxyaddress.Split(':')[1]), Proxyaddress.Split(':')[2], Proxyaddress.Split(':')[3]);
+                            Option.AddHttpProxy(seleniumHelper.Proxyaddress.Split(':')[0], Convert.ToInt32(seleniumHelper.Proxyaddress.Split(':')[1]), seleniumHelper.Proxyaddress.Split(':')[2], seleniumHelper.Proxyaddress.Split(':')[3]);
                         }
                         else
                         {
-                            Option.AddArgument("--proxy-server= socks5://" + Proxyaddress.Split(':')[0] + ":" + Proxyaddress.Split(':')[1]);
+                            Option.AddArgument("--proxy-server= socks5://" + seleniumHelper.Proxyaddress.Split(':')[0] + ":" + seleniumHelper.Proxyaddress.Split(':')[1]);
                         }
                         break;
                 }
