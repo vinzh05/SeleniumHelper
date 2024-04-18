@@ -34,7 +34,7 @@ Execute your Selenium scripts with enhanced capabilities:
 
 Detailed Usage Guide
 --------------------
-
+### Initialize chrome
 1. `OpenBrowser(SeleniumHelper seleniumHelper)`
 
 -   Purpose: Initializes and returns a `ChromeDriver` instance configured with options specified in the `SeleniumHelper` instance.
