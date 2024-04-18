@@ -100,15 +100,7 @@ Detailed Usage Guide
 
 ### Additional Utilities
 
-1.  `CheckPageSource(IWebDriver driver, int timeWait, string text)`:
-
--   Checks if a specific text is present in the page source within a specified time period.
--   Example:
-
-    ```csharp
-    bool isTextFound = SeleniumHelper.CheckPageSource(driver, 3, "Welcome");
-
-2.  `AddCookieIntoChrome(IWebDriver driver, string cookie, string domain)`:
+1.   `AddCookieIntoChrome(IWebDriver driver, string cookie, string domain)`:
 
 -   Adds a cookie into Chrome.
 -   Example:
@@ -116,7 +108,7 @@ Detailed Usage Guide
     ```csharp
     SeleniumHelper.AddCookieIntoChrome(driver, "sessionId=abc123", "example");
 
-3.  `GetCookieFromChrome(IWebDriver driver)`:
+2.  `GetCookieFromChrome(IWebDriver driver)`:
 -   Retrieves cookies from Chrome.
 -   Example:
 
