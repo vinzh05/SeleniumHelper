@@ -41,9 +41,19 @@ Detailed Usage Guide
 -   Usage:
 
     ```csharp
-    var helper = new SeleniumHelper();
-    helper.DisableImages = true; // Example setting
-    IWebDriver driver = SeleniumHelper.OpenBrowser(helper);
+    ChromeDriver driver = null;
+    SeleniumHelper seleniumHelper = new SeleniumHelper();
+    seleniumHelper.DisableImage = false;
+    seleniumHelper.Extension = false;
+    seleniumHelper.App = false;
+    seleniumHelper.nameExtension = "";
+    seleniumHelper.debugPort = false;
+    seleniumHelper.Port = "";
+    seleniumHelper.Profile = true;
+    seleniumHelper.profilepath = uidProfile;
+    seleniumHelper.TypeProxy = 0;
+    seleniumHelper.Proxyaddress = "";
+    driver = SeleniumHelper.OpenChrome(seleniumHelper);
 
 2. `WaitElement(IWebDriver driver, string type, string element, int repeat, int timeDelay)`
 
