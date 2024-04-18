@@ -60,3 +60,7 @@ F:\Github\SeleniumHelper\SeleniumHelper\obj\Debug\SeleniumHelper.csproj.CoreComp
 F:\Github\SeleniumHelper\SeleniumHelper\obj\Debug\SeleniumHelper.csproj.CopyComplete
 F:\Github\SeleniumHelper\SeleniumHelper\obj\Debug\SeleniumHelper.dll
 F:\Github\SeleniumHelper\SeleniumHelper\obj\Debug\SeleniumHelper.pdb
+D:\Github\SeleniumHelper\SeleniumHelper\bin\Debug\Newtonsoft.Json.dll
+D:\Github\SeleniumHelper\SeleniumHelper\bin\Debug\Newtonsoft.Json.xml
+D:\Github\SeleniumHelper\SeleniumHelper\bin\Debug\WebDriver.xml
+D:\Github\SeleniumHelper\SeleniumHelper\bin\Debug\WebDriver.Support.xml

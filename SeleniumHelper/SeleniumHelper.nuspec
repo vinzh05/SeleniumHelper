@@ -1,0 +1,17 @@
+<?xml version="1.0" encoding="utf-8"?>
+<package >
+  <metadata>
+    <id>Vinzh.SeleniumHelper</id>
+    <version>1.0.0</version>
+    <title>SeleniumHelper</title>
+    <authors>Vinzh</authors>
+    <requireLicenseAcceptance>false</requireLicenseAcceptance>
+    <license type="expression">MIT</license>
+    <icon>D:\Github\SeleniumHelper\SeleniumHelper\selenium.png</icon>
+    <projectUrl>https://github.com/vinzh05/SeleniumHelper</projectUrl>
+    <description>This is an advanced library designed to optimize and accelerate coding with Selenium. It eliminates the need for lengthy and complex methods by introducing a more concise and intuitive syntax. This improvement not only makes the code easier to write but also enhances readability and maintenance. The library aims to facilitate faster development cycles and more efficient coding practices, making it an invaluable tool for developers seeking to maximize productivity with Selenium.</description>
+    <releaseNotes>Summary of changes made in this release of the package.</releaseNotes>
+    <copyright>Copyright © 2024 by Vinzh</copyright>
+    <tags>Selenium Webdriver Browser Automation</tags>
+  </metadata>
+</package>

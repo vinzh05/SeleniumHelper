@@ -560,23 +560,6 @@ namespace SeleniumSupport
             }
             return "";
         }
-        public static int GetIndexOfPossitionApp(ref List<int> lstPossition)
-        {
-            int result = 0;
-            lock (lstPossition)
-            {
-                for (int i = 0; i < lstPossition.Count; i++)
-                {
-                    if (lstPossition[i] == 0)
-                    {
-                        result = i;
-                        lstPossition[i] = 1;
-                        break;
-                    }
-                }
-            }
-            return result;
-        }
         public static void TimeWaitForSearchingElement(int time, IWebDriver driver)
         {
             driver.Manage().Timeouts().ImplicitWait = TimeSpan.FromSeconds(time);

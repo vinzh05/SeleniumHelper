@@ -1,4 +1,5 @@
-﻿using System.Reflection;
+﻿using System.Resources;
+using System.Reflection;
 using System.Runtime.CompilerServices;
 using System.Runtime.InteropServices;
 
@@ -6,11 +7,11 @@ using System.Runtime.InteropServices;
 // set of attributes. Change these attribute values to modify the information
 // associated with an assembly.
 [assembly: AssemblyTitle("SeleniumHelper")]
-[assembly: AssemblyDescription("")]
+[assembly: AssemblyDescription("This is an advanced library designed to optimize and accelerate coding with Selenium. It eliminates the need for lengthy and complex methods by introducing a more concise and intuitive syntax. This improvement not only makes the code easier to write but also enhances readability and maintenance. The library aims to facilitate faster development cycles and more efficient coding practices, making it an invaluable tool for developers seeking to maximize productivity with Selenium.")]
 [assembly: AssemblyConfiguration("")]
-[assembly: AssemblyCompany("")]
+[assembly: AssemblyCompany("Vinzh")]
 [assembly: AssemblyProduct("SeleniumHelper")]
-[assembly: AssemblyCopyright("Copyright ©  2022")]
+[assembly: AssemblyCopyright("Copyright 2024 © Vinzh")]
 [assembly: AssemblyTrademark("")]
 [assembly: AssemblyCulture("")]
 
@@ -34,3 +35,4 @@ using System.Runtime.InteropServices;
 // [assembly: AssemblyVersion("1.0.*")]
 [assembly: AssemblyVersion("1.0.0.0")]
 [assembly: AssemblyFileVersion("1.0.0.0")]
+[assembly: NeutralResourcesLanguage("en")]
