@@ -43,16 +43,16 @@ Detailed Usage Guide
     ```csharp
     ChromeDriver driver = null;
     SeleniumHelper seleniumHelper = new SeleniumHelper();
-    seleniumHelper.DisableImage = false;
-    seleniumHelper.Extension = false;
-    seleniumHelper.App = false;
-    seleniumHelper.nameExtension = "";
-    seleniumHelper.debugPort = false;
-    seleniumHelper.Port = "";
-    seleniumHelper.Profile = true;
-    seleniumHelper.profilepath = uidProfile;
-    seleniumHelper.TypeProxy = 0;
-    seleniumHelper.Proxyaddress = "";
+    seleniumHelper.DisableImages = false;
+    seleniumHelper.UseExtension = false;
+    seleniumHelper.UseAppMode = false;
+    seleniumHelper.ExtensionPath = "";
+    seleniumHelper.UseDebugPort = false;
+    seleniumHelper.DebugPort = "";
+    seleniumHelper.UseProfile = true;
+    seleniumHelper.ProfilePath = uidProfile;
+    seleniumHelper.ProxyType = 0;
+    seleniumHelper.ProxyAddress = "";
     driver = SeleniumHelper.OpenChrome(seleniumHelper);
 
 2. `WaitElement(IWebDriver driver, string type, string element, int repeat, int timeDelay)`
