@@ -46,7 +46,6 @@ D:\Github\SeleniumHelper\SeleniumHelper\obj\Debug\SeleniumHelper.csproj.CoreComp
 D:\Github\SeleniumHelper\SeleniumHelper\obj\Debug\SeleniumHelper.csproj.CopyComplete
 D:\Github\SeleniumHelper\SeleniumHelper\obj\Debug\SeleniumHelper.dll
 D:\Github\SeleniumHelper\SeleniumHelper\obj\Debug\SeleniumHelper.pdb
-D:\Github\SeleniumHelper\SeleniumHelper\bin\Debug\OpenQA.Selenium.Chrome.ChromeDriverExtensions.dll
 F:\Github\SeleniumHelper\SeleniumHelper\bin\Debug\selenium-manager\linux\selenium-manager
 F:\Github\SeleniumHelper\SeleniumHelper\bin\Debug\selenium-manager\macos\selenium-manager
 F:\Github\SeleniumHelper\SeleniumHelper\bin\Debug\selenium-manager\windows\selenium-manager.exe

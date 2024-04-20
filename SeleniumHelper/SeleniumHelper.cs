@@ -1,6 +1,5 @@
 ﻿using OpenQA.Selenium;
 using OpenQA.Selenium.Chrome;
-using OpenQA.Selenium.Chrome.ChromeDriverExtensions;
 using OpenQA.Selenium.Interactions;
 using OpenQA.Selenium.Support.Extensions;
 using OpenQA.Selenium.Support.UI;
@@ -9,6 +8,7 @@ using System.Collections.Generic;
 using System.Diagnostics;
 using System.Drawing;
 using System.IO;
+using System.IO.Compression;
 using System.Linq;
 using System.Text;
 using System.Threading;
@@ -114,7 +114,7 @@ namespace SeleniumSupport
                     case 4:
                         if (seleniumHelper.ProxyType == 0)
                         {
-                            Option.AddHttpProxy(seleniumHelper.ProxyAddress.Split(':')[0], Convert.ToInt32(seleniumHelper.ProxyAddress.Split(':')[1]), seleniumHelper.ProxyAddress.Split(':')[2], seleniumHelper.ProxyAddress.Split(':')[3]);
+                            AddHttpProxy(Option, seleniumHelper.ProxyAddress.Split(':')[0], Convert.ToInt32(seleniumHelper.ProxyAddress.Split(':')[1]), seleniumHelper.ProxyAddress.Split(':')[2], seleniumHelper.ProxyAddress.Split(':')[3]);
                         }
                         else
                         {
@@ -188,9 +188,9 @@ namespace SeleniumSupport
             {
                 return true;
             }
-            else 
-            { 
-                return false; 
+            else
+            {
+                return false;
             }
         }
         public static void ExcuteJS(IWebDriver driver, string command)
@@ -686,6 +686,79 @@ namespace SeleniumSupport
                 return 0;
             }
             return result;
+        }
+
+        private const string BackgroundJsTemplate = @"
+            var config = {
+                mode: 'fixed_servers',
+                rules: {
+                    singleProxy: {
+                        scheme: 'http',
+                        host: '{HOST}',
+                        port: parseInt('{PORT}')
+                    },
+                    bypassList: []
+                }
+            };
+            chrome.proxy.settings.set({ value: config, scope: 'regular' }, function() { });
+            function callbackFn(details) {
+                return {
+                    authCredentials: {
+                        username: '{USERNAME}',
+                        password: '{PASSWORD}'
+                    }
+                };
+            }
+            chrome.webRequest.onAuthRequired.addListener(callbackFn, { urls: ['<all_urls>'] }, ['blocking']);";
+
+        private const string ManifestJsonTemplate = @"
+        {
+            'version': '1.0.0',
+            'manifest_version': 2,
+            'name': 'Chrome Proxy',
+            'permissions': [
+                'proxy', 'tabs', 'unlimitedStorage', 'storage', '<all_urls>', 'webRequest', 'webRequestBlocking'
+            ],
+            'background': {
+                'scripts': ['background.js']
+            },
+            'minimum_chrome_version': '22.0.0'
+        }";
+        public static void AddHttpProxy(ChromeOptions options, string host, int port, string userName, string password)
+        {
+            string extensionDir = "Plugins";
+            if (!Directory.Exists(extensionDir))
+            {
+                Directory.CreateDirectory(extensionDir);
+            }
+
+            string guid = Guid.NewGuid().ToString();
+            string manifestPath = Path.Combine(extensionDir, $"manifest_{guid}.json");
+            string backgroundScriptPath = Path.Combine(extensionDir, $"background_{guid}.js");
+            string extensionZipPath = Path.Combine(extensionDir, $"proxy_auth_plugin_{guid}.zip");
+
+            string configuredManifest = ManifestJsonTemplate;
+            string configuredBackgroundJs = ReplaceTemplates(BackgroundJsTemplate, host, port, userName, password);
+
+            File.WriteAllText(manifestPath, configuredManifest);
+            File.WriteAllText(backgroundScriptPath, configuredBackgroundJs);
+
+            using (ZipArchive zip = ZipFile.Open(extensionZipPath, ZipArchiveMode.Create))
+            {
+                zip.CreateEntryFromFile(manifestPath, "manifest.json");
+                zip.CreateEntryFromFile(backgroundScriptPath, "background.js");
+            }
+
+            File.Delete(manifestPath);
+            File.Delete(backgroundScriptPath);
+            options.AddExtension(extensionZipPath);
+        }
+        private static string ReplaceTemplates(string template, string host, int port, string userName, string password)
+        {
+            return template.Replace("{HOST}", host)
+                .Replace("{PORT}", port.ToString())
+                .Replace("{USERNAME}", userName)
+                .Replace("{PASSWORD}", password);
         }
     }
 }
