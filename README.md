@@ -6,7 +6,7 @@ Enhance your Selenium experience with streamlined functionality!
 What's news?
 ---------------
 
-In the new version 1.0.2, you can now add a Proxy containing authentication directly to Chrome!
+In the new version 1.0.3, you can now add a Proxy containing authentication directly to Chrome!
 
 Download and install to experience the new version now!
 
@@ -134,7 +134,7 @@ Authors
 Version History
 ---------------
 
--   1.0.2
+-   1.0.3
 
 License
 -------
