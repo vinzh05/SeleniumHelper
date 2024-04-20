@@ -3,6 +3,15 @@ SeleniumSupport Library
 
 Enhance your Selenium experience with streamlined functionality!
 
+What's news?
+---------------
+
+In the new version 1.0.2, you can now add a Proxy containing authentication directly to Chrome!
+
+Download and install to experience the new version now!
+
+Download on nuget: https://www.nuget.org/packages/Selenium.SeleniumHelper
+
 Description
 -----------
 
@@ -125,8 +134,7 @@ Authors
 Version History
 ---------------
 
--   1.0.1
-    -   Initial release.
+-   1.0.2
 
 License
 -------
