@@ -3,7 +3,7 @@ SeleniumSupport Library
 
 Enhance your Selenium experience with streamlined functionality!
 
-What's news?
+What's new?
 ---------------
 
 In the new version 1.0.3, you can now add a Proxy containing authentication directly to Chrome!
