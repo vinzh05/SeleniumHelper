@@ -63,3 +63,4 @@ D:\Github\SeleniumHelper\SeleniumHelper\bin\Debug\Newtonsoft.Json.dll
 D:\Github\SeleniumHelper\SeleniumHelper\bin\Debug\Newtonsoft.Json.xml
 D:\Github\SeleniumHelper\SeleniumHelper\bin\Debug\WebDriver.xml
 D:\Github\SeleniumHelper\SeleniumHelper\bin\Debug\WebDriver.Support.xml
+D:\Github\SeleniumHelper\SeleniumHelper\bin\Debug\OpenQA.Selenium.Chrome.ChromeDriverExtensions.dll
