@@ -12,6 +12,30 @@ Download and install to experience the new version now!
 
 Download on nuget: https://www.nuget.org/packages/Selenium.SeleniumHelper
 
+- To configure a proxy in your settings, use the following guidelines:
+
+For an HTTP proxy, set TypeProxy to 0.
+
+For a SOCKS5 proxy, set TypeProxy to 1.
+
+- The proxy configuration should be specified in one of these formats:
+
+ip:port for simple IP address and port configuration.
+
+ip:port:user:pass if authentication with a username and password is required.
+
+Make sure to choose the correct format based on your proxy type and whether authentication is needed.
+-  Proxy have ip:port
+   ```csharp
+    seleniumHelper.TypeProxy = 0;
+    seleniumHelper.Proxyaddress = "a:b";
+
+
+- Proxy have ip:port:user:pass
+    ```csharp
+    seleniumHelper.TypeProxy = 0;
+    seleniumHelper.Proxyaddress = "a:b:c:d";
+    
 Description
 -----------
 
