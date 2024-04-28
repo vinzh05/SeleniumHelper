@@ -659,6 +659,25 @@ namespace SeleniumSupport
             }
             return 0;
         }
+        public static byte[] TakeScreenShot(ChromeDriver driver)
+        {
+            try
+            {
+                Dictionary<string, object> screenshotResponse = (Dictionary<string, object>)driver.ExecuteCdpCommand("Page.captureScreenshot", new Dictionary<string, object>()
+                {
+                    { "format", "png" }, // Định dạng của ảnh
+                    { "fromSurface", true } // Chụp từ bề mặt của trang, bao gồm các phần được vẽ bằng CSS và WebGL
+                });
+                string base64 = screenshotResponse["data"].ToString();
+                byte[] imageBytes = Convert.FromBase64String(base64);
+                return imageBytes;
+            }
+            catch
+            {
+                return null;
+            }
+        }
+
         public static int ScrollSmoothIfNotExistOnScreen(IWebDriver driver, string JSpath)
         {
             try
