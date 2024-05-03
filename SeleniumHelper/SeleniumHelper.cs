@@ -19,7 +19,7 @@ namespace SeleniumSupport
 {
     public class SeleniumHelper
     {
-        public bool DisableImages { get; set; }
+        public bool UseDisableImage { get; set; }
         public bool UseExtension { get; set; }
         public bool UseAppMode { get; set; }
         public string ExtensionPath { get; set; }
@@ -30,11 +30,19 @@ namespace SeleniumSupport
         public int ProxyType { get; set; }
         public string ProxyAddress { get; set; }
         public string[] Arguments { get; set; }
+        public bool UseBrowserPath { get; set; }
+        public string BrowserPath { get; set; }
+        public bool UseDriverPath { get; set; }
+        public string DriverPath { get; set; }
         public SeleniumHelper()
         {
-            DisableImages = false;
+            UseDisableImage = false;
             UseExtension = false;
             UseAppMode = false;
+            UseBrowserPath = false;
+            BrowserPath = string.Empty;
+            UseDriverPath = false;
+            DriverPath = string.Empty;
             ExtensionPath = string.Empty;
             UseDebugPort = false;
             DebugPort = string.Empty;
@@ -47,12 +55,21 @@ namespace SeleniumSupport
         public static IWebDriver OpenBrowser(SeleniumHelper seleniumHelper)
         {
             var Option = new ChromeOptions();
-            ChromeDriverService chromeDriverService = ChromeDriverService.CreateDefaultService(AppDomain.CurrentDomain.BaseDirectory);
+            ChromeDriverService chromeDriverService = null;
+            if (seleniumHelper.UseDriverPath)
+            {
+                chromeDriverService = ChromeDriverService.CreateDefaultService(seleniumHelper.DriverPath);
+            }
+            chromeDriverService = ChromeDriverService.CreateDefaultService(AppDomain.CurrentDomain.BaseDirectory);
             chromeDriverService.HideCommandPromptWindow = true;
             chromeDriverService.DisableBuildCheck = true;
             Option.AddExcludedArgument("enable-automation");
             AddBrowserArguments(Option, seleniumHelper.Arguments);
-            if (seleniumHelper.DisableImages)
+            if (seleniumHelper.UseBrowserPath)
+            {
+                Option.BinaryLocation = seleniumHelper.BrowserPath;
+            }
+            if (seleniumHelper.UseDisableImage)
             {
                 Option.AddArgument("--blink-settings=imagesEnabled=false");
                 Option.AddArgument("--disable-images");
@@ -687,7 +704,28 @@ namespace SeleniumSupport
             }
             return result;
         }
-
+        public static string TakeScreenShotToBase64(IWebDriver driver, IWebDriver element, int type)
+        {
+            string result = "";
+            Screenshot screenshot = null;
+            try
+            {
+                switch (type)
+                {
+                    case 1:
+                        screenshot = ((ITakesScreenshot)driver).GetScreenshot();
+                        break;
+                    case 2:
+                        screenshot = ((ITakesScreenshot)element).GetScreenshot();
+                        break;
+                }
+            }
+            catch
+            {
+                return null;
+            }
+            return result = screenshot.ToString();
+        }
         private const string BackgroundJsTemplate = @"
             var config = {
                 mode: 'fixed_servers',
