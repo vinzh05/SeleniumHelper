@@ -19,21 +19,26 @@ From now on when you take a selenium screenshot, it will return the result in ba
 
 Screenshot Selenium Guide.
 -  Driver screenshot
+
    ```csharp
    IWebDriver driver = null;
    SeleniumHelper.TakeScreenShotToBase64(driver, "driver");
 
+
 - Element screenshot
+
     ```csharp
     IWebDriver driver = null;
     var element = iwebdriver.FindElement(By.XPath("abcxyz"));
     SeleniumHelper.TakeScreenShotToBase64(driver, "element", element);
+    
     
 Add BrowserPath & DriverPath Selenium Guide.
 -  Driver screenshot
    ```csharp
     seleniumHelper.UseBrowserPath = true;
     seleniumHelper.BrowserPath = "abcxyz";
+
 
 - Element screenshot
     ```csharp
