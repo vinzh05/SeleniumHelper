@@ -704,7 +704,7 @@ namespace SeleniumSupport
             }
             return result;
         }
-        public static string TakeScreenShotToBase64(IWebDriver driver, IWebDriver element, int type)
+        public static string TakeScreenShotToBase64(IWebDriver driver, string type, IWebDriver element = null)
         {
             string result = "";
             Screenshot screenshot = null;
@@ -712,12 +712,17 @@ namespace SeleniumSupport
             {
                 switch (type)
                 {
-                    case 1:
+                    case "driver":
                         screenshot = ((ITakesScreenshot)driver).GetScreenshot();
                         break;
-                    case 2:
-                        screenshot = ((ITakesScreenshot)element).GetScreenshot();
+                    case "element":
+                        if (element != null)
+                            screenshot = ((ITakesScreenshot)element).GetScreenshot();
+                        else
+                            throw new ArgumentNullException("element", "The element parameter cannot be null when type is 'element'.");
                         break;
+                    default:
+                        throw new ArgumentException("Invalid type parameter. It must be either 'driver' or 'element'.");
                 }
             }
             catch
@@ -726,6 +731,7 @@ namespace SeleniumSupport
             }
             return result = screenshot.ToString();
         }
+
         private const string BackgroundJsTemplate = @"
             var config = {
                 mode: 'fixed_servers',
