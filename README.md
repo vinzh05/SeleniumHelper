@@ -5,7 +5,7 @@ Enhance your Selenium experience with streamlined functionality!
 
 What's new?
 ---------------
-### *Update Version 1.0.6: In the new version 1.0.6, you can now Screenshot the Chrome to Base64, Add BrowserPath, driverPath and Get value from ExcuteJS!
+### *Update Version 1.0.7 In the new version 1.0.7, you can now Screenshot the Chrome to Base64, Add BrowserPath, driverPath and Get value from ExcuteJS!
 
 Download and install to experience the new version now!
 
