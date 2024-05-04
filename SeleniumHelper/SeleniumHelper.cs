@@ -676,31 +676,15 @@ namespace SeleniumSupport
             }
             return 0;
         }
-        public static int ScrollSmoothIfNotExistOnScreen(IWebDriver driver, string JSpath)
-        {
-            try
-            {
-                if (CheckExistElementOnScreen(driver, JSpath) != 0)
-                {
-                    ((IJavaScriptExecutor)driver).ExecuteScript(JSpath + ".scrollIntoView({ behavior: 'smooth', block: 'center'});");
-                }
-                return 1;
-            }
-            catch
-            {
-                return 0;
-            }
-        }
         public static int CheckExistElementOnScreen(IWebDriver driver, string JSpath)
         {
             int result = 0;
             try
             {
-                result = Convert.ToInt32(((IJavaScriptExecutor)driver).ExecuteScript("var check='';x=" + JSpath + ";if(x.getBoundingClientRect().top<=0) check='-1'; else if(x.getBoundingClientRect().top+x.getBoundingClientRect().height>window.innerHeight) check='1'; else check='0'; return check;"));
+                result = Convert.ToInt32(((IJavaScriptExecutor)driver).ExecuteScript($"console.log((x={JSpath}).getBoundingClientRect().top<=0 ? '-1' : (x.getBoundingClientRect().top + x.getBoundingClientRect().height > window.innerHeight ? '1' : '0'));"));
             }
             catch
             {
-                return 0;
             }
             return result;
         }
