@@ -91,7 +91,7 @@ namespace SeleniumSupport
             }
             if (seleniumHelper.UseDebugPort)
             {
-                Option.DebuggerAddress = $"127.0.0.1:{seleniumHelper.UseDebugPort}";
+                Option.DebuggerAddress = seleniumHelper.DebugPort;
             }
             if (seleniumHelper.UseProfile)
             {

@@ -5,8 +5,48 @@ Enhance your Selenium experience with streamlined functionality!
 
 What's new?
 ---------------
+### *Update Version 1.0.5: In the new version 1.0.5, you can now Screenshot the Chrome to Base64, Add BrowserPath, driverPath!
 
-In the new version 1.0.3, you can now add a Proxy containing authentication directly to Chrome!
+Download and install to experience the new version now!
+
+Download on nuget: https://www.nuget.org/packages/Selenium.SeleniumHelper
+
+From now on when you take a selenium screenshot, it will return the result in base64 format making your image capture more convenient:
+
+- For an driver screenshot, set type to "driver".
+
+- For an element screenshot, set type to "element".
+
+Screenshot Selenium Guide.
+-  Driver screenshot
+
+   ```csharp
+   IWebDriver driver = null;
+   SeleniumHelper.TakeScreenShotToBase64(driver, "driver");
+
+
+- Element screenshot
+
+    ```csharp
+    IWebDriver driver = null;
+    var element = iwebdriver.FindElement(By.XPath("abcxyz"));
+    SeleniumHelper.TakeScreenShotToBase64(driver, "element", element);
+    
+    
+Add BrowserPath & DriverPath Selenium Guide.
+-  Driver screenshot
+   ```csharp
+    seleniumHelper.UseBrowserPath = true;
+    seleniumHelper.BrowserPath = "abcxyz";
+
+
+- Element screenshot
+    ```csharp
+    seleniumHelper.UseDriverPath = true;
+    seleniumHelper.DriverPath = "abcxyz";
+    
+    
+### Version 1.0.3: In the new version 1.0.3, you can now add a Proxy containing authentication directly to Chrome!
 
 Download and install to experience the new version now!
 
