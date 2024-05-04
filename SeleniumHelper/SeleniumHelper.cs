@@ -210,10 +210,10 @@ namespace SeleniumSupport
                 return false;
             }
         }
-        public static void ExcuteJS(IWebDriver driver, string command)
+        public static object ExcuteJS(IWebDriver driver, string command)
         {
-            IJavaScriptExecutor ex = (IJavaScriptExecutor)driver;
-            ex.ExecuteScript(command);
+            IJavaScriptExecutor javaScriptExecutor = (IJavaScriptExecutor)driver;
+            return javaScriptExecutor.ExecuteScript(command);
         }
         public static void ClickOptions(IWebDriver driver, int option, string type, string element)
         {
