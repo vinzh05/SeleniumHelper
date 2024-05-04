@@ -34,13 +34,13 @@ Screenshot Selenium Guide.
     
     
 Add BrowserPath & DriverPath Selenium Guide.
--  Driver screenshot
+-  BrowserPath
    ```csharp
     seleniumHelper.UseBrowserPath = true;
     seleniumHelper.BrowserPath = "abcxyz";
 
 
-- Element screenshot
+- DriverPath
     ```csharp
     seleniumHelper.UseDriverPath = true;
     seleniumHelper.DriverPath = "abcxyz";
