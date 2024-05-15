@@ -5,7 +5,7 @@ Enhance your Selenium experience with streamlined functionality!
 
 What's new?
 ---------------
-### *Update Version 1.0.6: In the new version 1.0.6, you can now Screenshot the Chrome to Base64, Add BrowserPath, driverPath!
+### *Update Version 1.0.7 In the new version 1.0.7, you can now Screenshot the Chrome to Base64, Add BrowserPath, driverPath and Get value from ExcuteJS!
 
 Download and install to experience the new version now!
 
@@ -34,16 +34,26 @@ Screenshot Selenium Guide.
     
     
 Add BrowserPath & DriverPath Selenium Guide.
--  Driver screenshot
+-  BrowserPath
    ```csharp
     seleniumHelper.UseBrowserPath = true;
     seleniumHelper.BrowserPath = "abcxyz";
 
 
-- Element screenshot
+- DriverPath
     ```csharp
     seleniumHelper.UseDriverPath = true;
     seleniumHelper.DriverPath = "abcxyz";
+
+
+ExcuteJS.
+- Get value from ExcuteJS
+    ```csharp
+    var height = SeleniumHelper.ExcuteJS(driver, "return Math.max(document.body.scrollHeight, document.body.offsetHeight, document.documentElement.clientHeight, document.documentElement.scrollHeight, document.documentElement.offsetHeight);");
+    
+- Use ExcuteJS
+    ```csharp
+    SeleniumHelper.ExcuteJS(driver, "return Math.max(document.body.scrollHeight, document.body.offsetHeight, document.documentElement.clientHeight, document.documentElement.scrollHeight, document.documentElement.offsetHeight);");
     
     
 ### Version 1.0.3: In the new version 1.0.3, you can now add a Proxy containing authentication directly to Chrome!
