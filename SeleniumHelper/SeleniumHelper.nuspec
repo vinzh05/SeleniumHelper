@@ -2,7 +2,7 @@
 <package >
   <metadata>
     <id>Selenium.SeleniumHelper</id>
-    <version>1.0.7</version>
+    <version>1.0.8</version>
     <title>SeleniumHelper</title>
     <authors>Vinzh</authors>
     <requireLicenseAcceptance>false</requireLicenseAcceptance>

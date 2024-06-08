@@ -14,7 +14,7 @@ using System.Linq;
 using System.Text;
 using System.Threading;
 
-namespace SeleniumSupport
+namespace SeleniumHelperSupport
 {
     public class SeleniumHelper
     {
