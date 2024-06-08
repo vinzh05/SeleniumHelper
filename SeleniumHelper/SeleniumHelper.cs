@@ -3,6 +3,7 @@ using OpenQA.Selenium.Chrome;
 using OpenQA.Selenium.Interactions;
 using OpenQA.Selenium.Support.Extensions;
 using OpenQA.Selenium.Support.UI;
+using SeleniumUndetectedChromeDriver;
 using System;
 using System.Collections.Generic;
 using System.Diagnostics;
@@ -12,14 +13,12 @@ using System.IO.Compression;
 using System.Linq;
 using System.Text;
 using System.Threading;
-using System.Windows.Forms;
-using System.Xml.Linq;
 
 namespace SeleniumSupport
 {
     public class SeleniumHelper
     {
-        public bool UseDisableImage { get; set; }
+        public bool EnableDisableImage { get; set; }
         public bool UseExtension { get; set; }
         public bool UseAppMode { get; set; }
         public string ExtensionPath { get; set; }
@@ -34,9 +33,10 @@ namespace SeleniumSupport
         public string BrowserPath { get; set; }
         public bool UseDriverPath { get; set; }
         public string DriverPath { get; set; }
+        public Dictionary<string, object> Prefs { get; set; }
         public SeleniumHelper()
         {
-            UseDisableImage = false;
+            EnableDisableImage = false;
             UseExtension = false;
             UseAppMode = false;
             UseBrowserPath = false;
@@ -51,57 +51,63 @@ namespace SeleniumSupport
             ProxyType = 0;
             ProxyAddress = string.Empty;
             Arguments = new string[] { };
+            Prefs = null;
         }
         public static IWebDriver OpenBrowser(SeleniumHelper seleniumHelper)
         {
-            var Option = new ChromeOptions();
+            var options = new ChromeOptions();
             ChromeDriverService chromeDriverService = null;
             if (seleniumHelper.UseDriverPath)
             {
                 chromeDriverService = ChromeDriverService.CreateDefaultService(seleniumHelper.DriverPath);
             }
-            chromeDriverService = ChromeDriverService.CreateDefaultService(AppDomain.CurrentDomain.BaseDirectory);
+            else
+            {
+                chromeDriverService = ChromeDriverService.CreateDefaultService(AppDomain.CurrentDomain.BaseDirectory);
+            }
             chromeDriverService.HideCommandPromptWindow = true;
             chromeDriverService.DisableBuildCheck = true;
-            Option.AddExcludedArgument("enable-automation");
-            AddBrowserArguments(Option, seleniumHelper.Arguments);
+            options.AddExcludedArgument("enable-automation");
+            options.AcceptInsecureCertificates = true;
+            AddBrowserArguments(options, seleniumHelper.Arguments);
+            AddPreferences(options, seleniumHelper.Prefs);
             if (seleniumHelper.UseBrowserPath)
             {
-                Option.BinaryLocation = seleniumHelper.BrowserPath;
+                options.BinaryLocation = seleniumHelper.BrowserPath;
             }
-            if (seleniumHelper.UseDisableImage)
+            if (seleniumHelper.EnableDisableImage)
             {
-                Option.AddArgument("--blink-settings=imagesEnabled=false");
-                Option.AddArgument("--disable-images");
+                options.AddArgument("--blink-settings=imagesEnabled=false");
+                options.AddArgument("--disable-images");
             }
             if (seleniumHelper.UseExtension)
             {
                 if (seleniumHelper.ExtensionPath.Contains("crx"))
                 {
-                    Option.AddExtension(seleniumHelper.ExtensionPath);
+                    options.AddExtension(seleniumHelper.ExtensionPath);
                 }
                 else
                 {
-                    Option.AddArgument($"--load-extension={seleniumHelper.ExtensionPath}");
+                    options.AddArgument($"--load-extension={seleniumHelper.ExtensionPath}");
                 }
             }
             if (seleniumHelper.UseAppMode)
             {
-                Option.AddArgument("--app=data:,");
+                options.AddArgument("--app=data:,");
             }
             if (seleniumHelper.UseDebugPort)
             {
-                Option.DebuggerAddress = seleniumHelper.DebugPort;
+                options.DebuggerAddress = seleniumHelper.DebugPort;
             }
             if (seleniumHelper.UseProfile)
             {
-                if (!Directory.Exists(seleniumHelper.ProfilePath))
+                if (!Directory.Exists("ProfileChrome\\" + seleniumHelper.ProfilePath))
                 {
-                    Directory.CreateDirectory(seleniumHelper.ProfilePath);
+                    Directory.CreateDirectory("ProfileChrome\\" + seleniumHelper.ProfilePath);
                 }
-                if (Directory.Exists(seleniumHelper.ProfilePath))
+                if (Directory.Exists("ProfileChrome\\" + seleniumHelper.ProfilePath))
                 {
-                    Option.AddArgument("--user-data-dir=" + seleniumHelper.ProfilePath);
+                    options.AddArgument("--user-data-dir=" + Directory.GetCurrentDirectory() + "\\ProfileChrome\\" + seleniumHelper.ProfilePath);
                 }
             }
             if (!string.IsNullOrEmpty(seleniumHelper.ProxyAddress.Trim()))
@@ -111,38 +117,119 @@ namespace SeleniumSupport
                     case 1:
                         if (seleniumHelper.ProxyType == 0)
                         {
-                            Option.AddArgument("--proxy-server= 127.0.0.1:" + seleniumHelper.ProxyAddress);
+                            options.AddArgument("--proxy-server= 127.0.0.1:" + seleniumHelper.ProxyAddress);
                         }
                         else
                         {
-                            Option.AddArgument("--proxy-server= socks5://127.0.0.1:" + seleniumHelper.ProxyAddress);
+                            options.AddArgument("--proxy-server= socks5://127.0.0.1:" + seleniumHelper.ProxyAddress);
                         }
                         break;
                     case 2:
                         if (seleniumHelper.ProxyType == 0)
                         {
-                            Option.AddArgument("--proxy-server= " + seleniumHelper.ProxyAddress);
+                            options.AddArgument("--proxy-server= " + seleniumHelper.ProxyAddress);
                         }
                         else
                         {
-                            Option.AddArgument("--proxy-server= socks5://" + seleniumHelper.ProxyAddress);
+                            options.AddArgument("--proxy-server= socks5://" + seleniumHelper.ProxyAddress);
                         }
                         break;
                     case 4:
-                        if (seleniumHelper.ProxyType == 0)
-                        {
-                            AddHttpProxy(Option, seleniumHelper.ProxyAddress.Split(':')[0], Convert.ToInt32(seleniumHelper.ProxyAddress.Split(':')[1]), seleniumHelper.ProxyAddress.Split(':')[2], seleniumHelper.ProxyAddress.Split(':')[3]);
-                        }
-                        else
-                        {
-                            Option.AddArgument("--proxy-server= socks5://" + seleniumHelper.ProxyAddress.Split(':')[0] + ":" + seleniumHelper.ProxyAddress.Split(':')[1]);
-                        }
+                        AddProxyAuthentication(options, seleniumHelper.ProxyAddress.Split(':')[0], Convert.ToInt32(seleniumHelper.ProxyAddress.Split(':')[1]), seleniumHelper.ProxyAddress.Split(':')[2], seleniumHelper.ProxyAddress.Split(':')[3]);
                         break;
                 }
             }
-            var driver = new ChromeDriver(chromeDriverService, Option);
+            var driver = new ChromeDriver(chromeDriverService, options);
             driver.Manage().Timeouts().ImplicitWait = TimeSpan.FromSeconds(3);
             driver.Manage().Timeouts().PageLoad = TimeSpan.FromMinutes(60);
+            return driver;
+        }
+        public static UndetectedChromeDriver OpenUndetectChrome(SeleniumHelper seleniumHelper)
+        {
+            var options = new ChromeOptions();
+            AddBrowserArguments(options, seleniumHelper.Arguments);
+            if (seleniumHelper.UseBrowserPath)
+            {
+                options.BinaryLocation = seleniumHelper.BrowserPath;
+            }
+            if (seleniumHelper.EnableDisableImage)
+            {
+                options.AddArgument("--blink-settings=imagesEnabled=false");
+                options.AddArgument("--disable-images");
+            }
+            if (seleniumHelper.UseExtension)
+            {
+                if (seleniumHelper.ExtensionPath.Contains("crx"))
+                {
+                    options.AddExtension(seleniumHelper.ExtensionPath);
+                }
+                else
+                {
+                    options.AddArgument($"--load-extension={seleniumHelper.ExtensionPath}");
+                }
+            }
+            if (seleniumHelper.UseAppMode)
+            {
+                options.AddArgument("--app=data:,");
+            }
+            if (seleniumHelper.UseDebugPort)
+            {
+                options.DebuggerAddress = seleniumHelper.DebugPort;
+            }
+            if (seleniumHelper.UseProfile)
+            {
+                if (!Directory.Exists("ProfileChrome\\" + seleniumHelper.ProfilePath))
+                {
+                    Directory.CreateDirectory("ProfileChrome\\" + seleniumHelper.ProfilePath);
+                }
+                if (Directory.Exists("ProfileChrome\\" + seleniumHelper.ProfilePath))
+                {
+                    options.AddArgument("--user-data-dir=" + Directory.GetCurrentDirectory() + "\\ProfileChrome\\" + seleniumHelper.ProfilePath);
+                }
+            }
+            if (!string.IsNullOrEmpty(seleniumHelper.ProxyAddress.Trim()))
+            {
+                switch (seleniumHelper.ProxyAddress.Split(':').Count())
+                {
+                    case 1:
+                        if (seleniumHelper.ProxyType == 0)
+                        {
+                            options.AddArgument("--proxy-server= 127.0.0.1:" + seleniumHelper.ProxyAddress);
+                        }
+                        else
+                        {
+                            options.AddArgument("--proxy-server= socks5://127.0.0.1:" + seleniumHelper.ProxyAddress);
+                        }
+                        break;
+                    case 2:
+                        if (seleniumHelper.ProxyType == 0)
+                        {
+                            options.AddArgument("--proxy-server= " + seleniumHelper.ProxyAddress);
+                        }
+                        else
+                        {
+                            options.AddArgument("--proxy-server= socks5://" + seleniumHelper.ProxyAddress);
+                        }
+                        break;
+                    case 4:
+                        AddProxyAuthentication(options, seleniumHelper.ProxyAddress.Split(':')[0], Convert.ToInt32(seleniumHelper.ProxyAddress.Split(':')[1]), seleniumHelper.ProxyAddress.Split(':')[2], seleniumHelper.ProxyAddress.Split(':')[3]);
+                        break;
+                }
+            }
+            UndetectedChromeDriver driver;
+            string BaseUrl = $@"{AppDomain.CurrentDomain.BaseDirectory}\chromedriver.exe";
+            driver = UndetectedChromeDriver.Create(
+                     driverExecutablePath: seleniumHelper.UseDriverPath ? seleniumHelper.DriverPath : BaseUrl,
+                     browserExecutablePath: seleniumHelper.UseBrowserPath ? seleniumHelper.BrowserPath : null,
+                     //userDataDir: seleniumHelper.UseProfile ? seleniumHelper.ProfilePath : null,
+                     options: options,
+                     hideCommandPromptWindow: true,
+                     prefs: seleniumHelper.Prefs
+                 );
+
+            driver.Manage().Timeouts().ImplicitWait = TimeSpan.FromSeconds(3);
+            driver.Manage().Timeouts().PageLoad = TimeSpan.FromMinutes(60);
+
             return driver;
         }
         private static void AddBrowserArguments(ChromeOptions options, string[] arguments)
@@ -150,6 +237,16 @@ namespace SeleniumSupport
             if (arguments != null && arguments.Any())
             {
                 options.AddArguments(arguments);
+            }
+        }
+        private static void AddPreferences(ChromeOptions options, Dictionary<string, object> Preference)
+        {
+            if (Preference != null && Preference.Any())
+            {
+                foreach (var item in Preference)
+                {
+                    options.AddUserProfilePreference(item.Key, item.Value);
+                }
             }
         }
         public static bool WaitElement(IWebDriver driver, string type, string element, int repeat, int timeDelay)
@@ -741,18 +838,18 @@ namespace SeleniumSupport
 
         private const string ManifestJsonTemplate = @"
         {
-            'version': '1.0.0',
-            'manifest_version': 2,
-            'name': 'Chrome Proxy',
-            'permissions': [
-                'proxy', 'tabs', 'unlimitedStorage', 'storage', '<all_urls>', 'webRequest', 'webRequestBlocking'
+            ""version"": ""1.0.0"",
+            ""manifest_version"": 2,
+            ""name"": ""Chrome Proxy"",
+            ""permissions"": [
+                ""proxy"", ""tabs"", ""unlimitedStorage"", ""storage"", ""<all_urls>"", ""webRequest"", ""webRequestBlocking""
             ],
-            'background': {
-                'scripts': ['background.js']
+            ""background"": {
+                ""scripts"": [""background.js""]
             },
-            'minimum_chrome_version': '22.0.0'
+            ""minimum_chrome_version"": ""22.0.0""
         }";
-        public static void AddHttpProxy(ChromeOptions options, string host, int port, string userName, string password)
+        public static void AddProxyAuthentication(ChromeOptions options, string host, int port, string userName, string password)
         {
             string extensionDir = "Plugins";
             if (!Directory.Exists(extensionDir))

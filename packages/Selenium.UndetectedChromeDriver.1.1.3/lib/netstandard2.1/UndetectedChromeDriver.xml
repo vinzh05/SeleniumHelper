@@ -1,0 +1,55 @@
+<?xml version="1.0"?>
+<doc>
+    <assembly>
+        <name>UndetectedChromeDriver</name>
+    </assembly>
+    <members>
+        <member name="M:SeleniumUndetectedChromeDriver.UndetectedChromeDriver.Create(OpenQA.Selenium.Chrome.ChromeOptions,System.String,System.String,System.String,System.Int32,System.Int32,System.Boolean,System.Boolean,System.Boolean,System.Boolean,System.Nullable{System.TimeSpan},System.Collections.Generic.Dictionary{System.String,System.Object},System.Action{OpenQA.Selenium.Chrome.ChromeDriverService})">
+            <summary>
+            Creates a new instance of the chrome driver.
+            </summary>
+            <param name="options">Used to define browser behavior.</param>
+            <param name="userDataDir">Set chrome user profile directory.
+            creates a temporary profile if userDataDir is null,
+            and automatically deletes it after exiting.</param>
+            <param name="driverExecutablePath">Set chrome driver executable file path. (patches new binary)</param>
+            <param name="browserExecutablePath">Set browser executable file path.
+            default using $PATH to execute.</param>
+            <param name="port">Set the port used by the chromedriver executable. (not debugger port)</param>
+            <param name="logLevel">Set chrome logLevel.</param>
+            <param name="headless">Specifies to use the browser in headless mode.
+            warning: This reduces undetectability and is not fully supported.</param>
+            <param name="noSandbox">Set use --no-sandbox, and suppress the "unsecure option" status bar.
+            this option has a default of true since many people seem to run this as root(....) ,
+            and chrome does not start when running as root without using --no-sandbox flag.</param>
+            <param name="suppressWelcome">First launch using the welcome page.</param>
+            <param name="hideCommandPromptWindow">Hide selenium command prompt window.</param>
+            <param name="commandTimeout">The maximum amount of time to wait for each command.
+            default value is 60 seconds.</param>
+            <param name="prefs">Prefs is meant to store lightweight state that reflects user preferences.
+            dict value can be value or json.</param>
+            <param name="configureService">Initialize configuration ChromeDriverService.</param>
+            <returns>UndetectedChromeDriver</returns>
+        </member>
+        <member name="M:SeleniumUndetectedChromeDriver.UndetectedChromeDriver.Reconnect(System.Int32)">
+            <summary>
+            This can be useful in case of heavy detection methods.
+            -stops the chromedriver service which runs in the background
+            -starts the chromedriver service which runs in the background
+            -recreate session
+            </summary>
+            <param name="timeout"></param>
+            <returns></returns>
+            <exception cref="T:System.Exception"></exception>
+        </member>
+        <member name="M:SeleniumUndetectedChromeDriver.UndetectedChromeDriver.StartSession(OpenQA.Selenium.ICapabilities)">
+            <summary>
+            Differentiates from the regular method in that it does not
+            require a capabilities argument.The capabilities are automatically
+            recreated from the options at creation time.
+            </summary>
+            <param name="capabilities"></param>
+            <exception cref="T:System.Exception"></exception>
+        </member>
+    </members>
+</doc>
