@@ -5,6 +5,30 @@ Enhance your Selenium experience with streamlined functionality!
 
 What's new?
 ---------------
+### *Update Version 1.1.0: In the new version 1.1.0, We have fixed a few small errors that appeared in the old version. Now you can add preferences and use the new undetect Chrome browser!
+
+Download and install to experience the new version now!
+
+Download on nuget: https://www.nuget.org/packages/Selenium.SeleniumHelper
+
+From now everybody can add the Preference:
+
+Add Preference guide:
+-  add Preference
+    ```csharp
+    var prefs = new Dictionary<string, object>()
+    {
+        {"credentials_enable_service", false },
+        {"password_manager_enabled", false}
+    };
+    seleniumHelper.Prefs = prefs;
+    
+Use undetect Chrome Guide.
+-  undetectChrome
+   ```csharp
+    var seleniumHelper = new SeleniumHelper();
+    var driver = SeleniumHelper.OpenUndetectChrome(seleniumHelper);
+    
 ### *Update Version 1.0.7 In the new version 1.0.7, you can now Screenshot the Chrome to Base64, Add BrowserPath, driverPath and Get value from ExcuteJS!
 
 Download and install to experience the new version now!
