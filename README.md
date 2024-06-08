@@ -27,7 +27,7 @@ Use UndetectedChromeDriver Guide.
 -  UndetectedChromeDriver
    ```csharp
     var seleniumHelper = new SeleniumHelper();
-    var driver = SeleniumHelper.OpenUndetectChrome(seleniumHelper); //but you need to install UndiscoveredChromeDriver from https://github.com/fysh711426/UndiscoveredChromeDriver along with SeleniumHelper to avoid errors due to different versions.
+    var driver = SeleniumHelper.OpenUndetectChrome(seleniumHelper); //but you need to install UndetectedChromeDriver from https://github.com/fysh711426/UndetectedChromeDriver along with SeleniumHelper to avoid errors due to different versions.
     
 ### *Update Version 1.0.7 In the new version 1.0.7, you can now Screenshot the Chrome to Base64, Add BrowserPath, driverPath and Get value from ExcuteJS!
 
