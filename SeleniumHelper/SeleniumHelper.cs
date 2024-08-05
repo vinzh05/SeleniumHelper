@@ -785,9 +785,8 @@ namespace SeleniumHelperSupport
             }
             return result;
         }
-        public static string TakeScreenShotToBase64(IWebDriver driver, string type, IWebDriver element = null)
+        public static string TakeScreenShotToBase64(IWebDriver driver, string type, IWebElement element = null)
         {
-            string result = "";
             Screenshot screenshot = null;
             try
             {
@@ -810,7 +809,11 @@ namespace SeleniumHelperSupport
             {
                 return null;
             }
-            return result = screenshot.ToString();
+            return screenshot.ToString();
+        }
+        public static string GetUrl(IWebDriver driver)
+        {
+            return driver.Url;
         }
 
         private const string BackgroundJsTemplate = @"
@@ -877,6 +880,7 @@ namespace SeleniumHelperSupport
             File.Delete(manifestPath);
             File.Delete(backgroundScriptPath);
             options.AddExtension(extensionZipPath);
+            options.AddArgument($"--load-extension={extensionZipPath}");
         }
         private static string ReplaceTemplates(string template, string host, int port, string userName, string password)
         {

@@ -65,3 +65,4 @@ D:\Github\SeleniumHelper\SeleniumHelper\bin\Debug\WebDriver.Support.xml
 D:\Github\SeleniumHelper\SeleniumHelper\obj\Debug\Selenium.4C0239A5.Up2Date
 D:\Github\SeleniumHelper\SeleniumHelper\bin\Debug\UndetectedChromeDriver.dll
 D:\Github\SeleniumHelper\SeleniumHelper\bin\Debug\UndetectedChromeDriver.xml
+D:\Github\SeleniumHelper\SeleniumHelper\bin\Debug\UndetectedChromeDriver.pdb
