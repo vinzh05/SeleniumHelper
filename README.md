@@ -5,6 +5,33 @@ Enhance your Selenium experience with streamlined functionality!
 
 What's new?
 ---------------
+### *Update Version 1.1.3: In the new version 1.1.3, We have fixed a few small errors that appeared in the old version. Now you can "Get url, Right Click, Double Click and Click a specific element among many similar elements!
+
+Download and install to experience the new version now!
+
+Download on nuget: https://www.nuget.org/packages/Selenium.SeleniumHelper
+
+Get the Url:
+-  get URL
+    ```csharp
+    SeleniumHelper.GetUrl(driver);
+    
+-  Right Click
+    ```csharp
+    SeleniumHelper.RightClick(driver, "css", "abcxyz (Element)");
+    
+-  Double Click
+    ```csharp
+    SeleniumHelper.DoubleClick(driver, "css", "abcxyz (Element)");
+    
+-  Click a specific element among many similar elements
+    ```csharp
+    Example: I have an element value I want to click, but on that website there are many similar elements. 
+    I want to click that element specifically, for example, that element has a search number of 9. 
+    I will set the ElementSpecified = 9 assignment variable.
+    
+    SeleniumHelper.clickWithElementSpecified(driver, "css", "abcxyz (Element)", 9);
+    
 ### *Update Version 1.1.0: In the new version 1.1.0, We have fixed a few small errors that appeared in the old version. Now you can add preferences and use the new undetect Chrome browser!
 
 Download and install to experience the new version now!
