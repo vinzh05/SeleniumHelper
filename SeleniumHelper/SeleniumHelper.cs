@@ -362,19 +362,19 @@ namespace SeleniumHelperSupport
             switch (type)
             {
                 case "xpath":
-                    action.MoveToElement(driver.FindElement(By.XPath(element))).Click().Build().Perform();
+                    action.MoveToElement(driver.FindElement(By.XPath(element))).Click().Perform();
                     break;
                 case "name":
-                    action.MoveToElement(driver.FindElement(By.Name(element))).Click().Build().Perform();
+                    action.MoveToElement(driver.FindElement(By.Name(element))).Click().Perform();
                     break;
                 case "id":
-                    action.MoveToElement(driver.FindElement(By.Id(element))).Click().Build().Perform();
+                    action.MoveToElement(driver.FindElement(By.Id(element))).Click().Perform();
                     break;
                 case "css":
-                    action.MoveToElement(driver.FindElement(By.CssSelector(element))).Click().Build().Perform();
+                    action.MoveToElement(driver.FindElement(By.CssSelector(element))).Click().Perform();
                     break;
                 case "class":
-                    action.MoveToElement(driver.FindElement(By.ClassName(element))).Click().Build().Perform();
+                    action.MoveToElement(driver.FindElement(By.ClassName(element))).Click().Perform();
                     break;
             }
         }
@@ -811,10 +811,6 @@ namespace SeleniumHelperSupport
             }
             return screenshot.ToString();
         }
-        public static string GetUrl(IWebDriver driver)
-        {
-            return driver.Url;
-        }
 
         private const string BackgroundJsTemplate = @"
             var config = {
@@ -888,6 +884,54 @@ namespace SeleniumHelperSupport
                 .Replace("{PORT}", port.ToString())
                 .Replace("{USERNAME}", userName)
                 .Replace("{PASSWORD}", password);
+        }
+        public static void RightClick(IWebDriver driver, string type, string element)
+        {
+            Actions action = new Actions(driver);
+            switch (type)
+            {
+                case "xpath":
+                    action.MoveToElement(driver.FindElement(By.XPath(element))).ContextClick().Perform();
+                    break;
+                case "name":
+                    action.MoveToElement(driver.FindElement(By.Name(element))).ContextClick().Perform();
+                    break;
+                case "id":
+                    action.MoveToElement(driver.FindElement(By.Id(element))).ContextClick().Perform();
+                    break;
+                case "css":
+                    action.MoveToElement(driver.FindElement(By.CssSelector(element))).ContextClick().Perform();
+                    break;
+                case "class":
+                    action.MoveToElement(driver.FindElement(By.ClassName(element))).ContextClick().Perform();
+                    break;
+            }
+        }
+        public static void DoubleClick(IWebDriver driver, string type, string element)
+        {
+            Actions action = new Actions(driver);
+            switch (type)
+            {
+                case "xpath":
+                    action.MoveToElement(driver.FindElement(By.XPath(element))).DoubleClick().Perform();
+                    break;
+                case "name":
+                    action.MoveToElement(driver.FindElement(By.Name(element))).DoubleClick().Perform();
+                    break;
+                case "id":
+                    action.MoveToElement(driver.FindElement(By.Id(element))).DoubleClick().Perform();
+                    break;
+                case "css":
+                    action.MoveToElement(driver.FindElement(By.CssSelector(element))).DoubleClick().Perform();
+                    break;
+                case "class":
+                    action.MoveToElement(driver.FindElement(By.ClassName(element))).DoubleClick().Perform();
+                    break;
+            }
+        }
+        public static string GetUrl(IWebDriver driver)
+        {
+            return driver.Url;
         }
     }
 }
